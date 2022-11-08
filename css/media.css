@@ -28,8 +28,9 @@
     @media screen and (max-width:768px) {
     
         /* -------------------- common Style ----------------------- */
-        section {
+        section, footer {
             padding: 4rem 0 1rem;
+            
         }
     
         .section-title {
@@ -171,6 +172,22 @@
             padding: 1rem 0;
         }
 
+        /* -------------------- footer tyle ----------------------- */
+
+        .footer .footer-contents {
+            flex-wrap: wrap;
+            row-gap: 2rem;
+        }
+        .footer .footer-item {
+            width: 50% !important;
+        }
+        /* !important : css에서 정의하는 값으로 가장 최우선 적용된다. 사용은 최소화한다. */
+        .footer .footer-item:nth-child(3) {
+            margin-left: 0;
+        } 
+        .footer .copy {
+            padding: 4rem 0 2rem;
+        }
 
         
     }
@@ -230,6 +247,23 @@
         .products .item-info p:nth-child(1) > strong {
             font-size: var(--smaller-font-size)
         }
-        
+        /* -------------------- footer tyle ----------------------- */
+
+        .footer .footer-contents {
+            flex-wrap: wrap;
+            row-gap: 2rem;
+        }
+        .footer .footer-item {
+            width: 100% !important;
+            margin-left: 0;
+        }
+        /* !important : css에서 정의하는 값으로 가장 최우선 적용된다. 사용은 최소화한다. */
+        .footer .footer-item {
+            margin-left: 0;
+        } 
+
+        .footer .footer-item:first-child {
+            padding-left: 0;
+        }
         
     }

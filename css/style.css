@@ -108,7 +108,7 @@
     overflow: hidden;
 }
 
-section {
+section, footer {
     padding: 4rem 0 1rem;
 }
 
@@ -660,7 +660,7 @@ section {
 }
 
 .question .question-box.active {
-    background: var(--first-color);
+    _background: var(--first-color);
 }
 
 .question .question-box.active .question-haeder i, 
@@ -710,16 +710,34 @@ section {
 
 .contact .form p {
     width: 100%;
+    position: relative;
+}
+
+.contact .form p label {
+    position: absolute;
+    top: 1rem;
+    left: 0;
+    transition: all .3s ease;
 }
 
 .contact .form p input, .contact .form p textarea {
     width: 100%;
-    padding: 0 0 1rem 0;
+    padding: 1rem 1rem 1rem 0;
     border: none;
     border-bottom: 1px solid var(--text-color-light);
     color: var(--text-color);
     resize: none;
     outline: 0;
+}
+
+.contact .form p .input:focus + label {
+    top: -0.5rem;
+} 
+
+/* placeholder-shown : placehoder가 보는 것을 체크한다. 만약 사용자가 값을 입력하면 placeholder가 보이지 않는다. */
+
+.contact .form p .input:not(:placeholder-shown).input:not(:focus) + label {
+    top: -0.5rem;
 }
 
 .contact .form p textarea {
@@ -779,6 +797,38 @@ section {
     font-size: var(--small-font-size);
 }
 
+.footer .footer-item p {
+    font-size: var(--small-font-size);
+    margin-top: .75rem;
+
+}
+
+.footer .footer-item .footer-social-box  {
+    margin-top: .75rem;
+    display: flex;
+    column-gap: .75rem;
+}
+
+.footer .footer-item .footer-social-box a{
+    font-size: 1rem;
+    color: var(--text-color);
+}
+.footer .footer-item .footer-card-box {
+    display: flex;
+    column-gap: .5rem;
+    margin-top: .75rem;
+}
+.footer .footer-item .footer-card-box img {
+    width: 35px;
+}
+.footer .copy {
+    padding: 7rem 0 2rem;
+    text-align: center;
+}
+.footer .copy p {
+    font-size: var(--small-font-size);
+    color: var(--text-color-light);
+}
 
 /* Memo 
 1. 박스, 텍스트 그림자 효과 */
@@ -791,4 +841,4 @@ section {
 /* 메인 타이틀 : var (--big-font-size), var (--font-semi-bold), color: var(--title-color)
 작은 글씨 설명 : color var(--text-color)
 버튼 : var (--font-medium)
-t사진 넓이 : 350px */
+사진 넓이 : 350px */
