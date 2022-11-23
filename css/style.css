@@ -653,6 +653,7 @@ footer {
   font-size: 1.25rem;
   color: var(--title-color);
   margin-right: 0.5rem;
+  transition: all 0.3s ease;
 }
 
 .question .question-header h3 {
@@ -663,19 +664,32 @@ footer {
 
 .question .question-answer {
   width: 100%;
-  padding: 1rem;
+  padding: 0 1rem;
   font-size: var(--small-font-size);
-  display: none;
+  _display: none;
+  height: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
 }
 
 .question .question-box.active {
-  _background: var(--first-color);
+  background: var(--first-color);
 }
 
-.question .question-box.active .question-haeder i,
-.question .question-box.active .question-haeder h3,
+.question .question-box.active .question-header i,
+.question .question-box.active .question-header h3,
 .question .question-box.active .question-answer {
   color: #fff;
+}
+
+.question .question-box.active .question-answer {
+  _display: block;
+  height: auto;
+  padding: 1rem;
+}
+
+.question .question-box.active .question-header i {
+  transform: rotate(135deg);
 }
 
 /* -----------------------7.Company section style--------------------- */
