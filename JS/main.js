@@ -1,13 +1,6 @@
-//1. sticky header :  스크롤 시 헤더가 따라다니는 기능
-//2. header menu toggle
-//3. navigation menu design : 해당 섹션에 네비게이션 활성화 및 디자인 변경
-//4. question section accordion
-//5. reaveal effect
-//6. mobile navigation design
-
 /*================Header Sticky===============*/
+const header = document.querySelector(".header");
 const stickyHeader = () => {
-  const header = document.querySelector(".header");
   const scrY = window.scrollY;
   if (scrY > 0) {
     header.classList.add("sticky");
@@ -26,13 +19,11 @@ const headerHeight = document.querySelector("header").offsetHeight;
 const activateNavMenu = () => {
   const scrY = window.scrollY;
   sections.forEach((section) => {
-    const secHeight = section.offsetHeight; //section 요소의 높이값
-    const secTop = section.offsetTop - headerHeight; // sectin 요소의 윗쪽 옵셋값 - 헤더의 높이
-    const secId = section.getAttribute("id"); //각 섹션의 아이디값 저장
+    const secHeight = section.offsetHeight;
+    const secTop = section.offsetTop - headerHeight;
+    const secId = section.getAttribute("id");
 
     if (scrY > secTop && scrY <= secTop + secHeight) {
-      // && 합성곱 : 양쪽 모두 true일 경우 true
-      // || 합성합 : 양쪽 중 하나만 true일 경우 true
       document.querySelector(`.nav-${secId}`).classList.add("active");
     } else {
       document.querySelector(`.nav-${secId}`).classList.remove("active");
@@ -53,22 +44,45 @@ window.addEventListener("scroll", () => {
 
 /*================Header menu toggle===============*/
 const menu = document.querySelector(".menu-icon");
-const toggleMenu = (event) => {
-  //   console.log(this); //화살표 함수는 this에 전역개체 window를 호출한다.
-  //   console.log(e);
-  //   console.log(event.target);
-  const target = event.currentTarget;
+const mobileMenu = document.querySelector(".nav-list");
+const body = document.querySelector("body");
+const scrY = window.scrollY;
 
-  //   console.log(target.childNodes);
-  //   console.log(target.children);
-  target.classList.toggle("close");
-  if (target.classList.contains("close")) {
-    target.firstElementChild.setAttribute("class", "ri-close-line");
-  } else {
-    target.firstElementChild.setAttribute("class", "ri-menu-line");
+const showMenu = () => {
+  menu.firstElementChild.setAttribute("class", "ri-close-line");
+  mobileMenu.classList.add("show");
+  body.style.overflow = "hidden";
+
+  if (scrY === 0) {
+    header.style.boxShadow = "0 2px 2px #efefef";
   }
 };
 
+const hideMenu = () => {
+  menu.children[0].setAttribute("class", "ri-menu-line");
+  mobileMenu.classList.remove("show");
+  menu.classList.remove("close");
+  body.style.overflow = "auto";
+  if (scrY === 0) {
+    header.setAttribute("style", "");
+  }
+};
+
+const toggleMenu = (event) => {
+  event.preventDefault();
+  const target = event.currentTarget;
+  target.classList.toggle("close");
+  if (target.classList.contains("close")) {
+    showMenu();
+  } else {
+    hideMenu();
+  }
+};
+body.addEventListener("click", (e) => {
+  if (!header.contains(e.target)) {
+    hideMenu();
+  }
+});
 menu.addEventListener("click", toggleMenu);
 
 /*===============================*/
@@ -102,7 +116,3 @@ sr.reveal(".home-box");
 sr.reveal(".about-box");
 sr.reveal(".step-box", { interval: 200 });
 sr.reveal(".item", { interval: 200 });
-
-// sr.reveal(".home-box", { duration: 1000, origin: "bottom", distance: "50px" });
-
-/*===============================*/
